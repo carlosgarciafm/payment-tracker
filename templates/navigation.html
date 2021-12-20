@@ -1,0 +1,49 @@
+<!-- mobile-friendly menu -->
+<div class="bg-purple-800 text-purple-100 flex justify-between md:hidden">
+    <button id="sidebar-toggle" class="p-2 focus:outline-none
+                                        focus:bg-purple-600 z-10">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7" />
+        </svg>
+    </button>
+    <a href="#" class="block p-2 font-bold text-2md">
+        UserName
+    </a>
+</div>
+<!-- sidebar -->
+<nav id="sidebar" class="w-48 bg-purple-800 text-purple-100 absolute inset-y-0 left-0
+                                       transform -translate-x-full transition duration-200
+                                       ease-in-out md:relative md:translate-x-0">
+    <div class="space-y-6 text-lg py-24">
+        <ul>
+            <a href="#" class="">
+                <li class="py-2 font-bold text-xl hover:bg-purple-600
+                                          transition duration-200 px-4">
+                    UserName
+                </li>
+            </a>
+        </ul>
+        <ul class="font-bold space-y-4">
+            <a href="#">
+                <li class="py-1 my-2 hover:bg-purple-600 transition
+                                          duration-200 px-4">
+                    Purchases
+                </li>
+            </a>
+            <a href="#">
+                <li class="py-1 my-2 hover:bg-purple-600 transition
+                                          duration-200 px-4">
+                    Payments
+                </li>
+            </a>
+        </ul>
+        <ul class="">
+            <a href="#">
+                <li class="py-1 my-2 hover:bg-purple-600 transition
+                                          duration-200 px-4">
+                    Log Out
+                </li>
+            </a>
+        </ul>
+    </div>
+</nav>
