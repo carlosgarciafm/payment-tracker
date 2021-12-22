@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block navigation %}
+    {% include "navigation.html" %}
+{% endblock %}
+
+{% block title %}
+    Add Payment
+{% endblock %}
+
+{% block main %}
+    <div class="card container mx-auto bg-purple-200 w-4/5 md:w-2/3 mt-12">
+        <div class="space-y-4">
+            <div class="flex justify-between">
+                <h2 class="text-lg font-bold">Add New Payment</h2>
+                <span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10
+                        w-10" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+                    </svg>
+                </span>
+            </div>
+            <form action="/payment" method="post" class="">
+                <div class="md:flex md:space-x-4 space-y-2 md:space-y-0">
+                    <select name="purchase_id" class="input-text bg-white text-gray-400">
+                        <!-- TODO: add jinja2 syntax to add options for every
+                            pending purchase. -->
+                        <option value="id1" class="">[id] [seller] [cash]</option>
+                        <option value="id2" class="">[id2] [seller2] [cash]</option>
+                    </select>
+                    <input type="number" step="0.01" min="0.01" required
+                                                      placeholder="Amount"
+                                                      autocomplete="off"
+                                                      class="input-text">
+                </div>
+                <div class="flex justify-center">
+                    <button type="submit" class="submit-btn mt-4">
+                        Add Payment
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
