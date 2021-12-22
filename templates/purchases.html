@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block navigation %}
+    {% include "navigation.html" %}
+{% endblock %}
+
+{% block title %}
+    Purchases History
+{% endblock %}
+
+{% block main %}
+    <div class="card container mx-auto bg-purple-200 w-11/12 mt-6 md:mt-10">
+        <div class="">
+            <div class="flex justify-between">
+                <h2 class="font-bold text-lg">Registry Of Purchases</h2>
+                <button class="submit-btn"><a href="/purchase">New Purchase</a></button>
+            </div>
+            <table class="w-full mt-4">
+                <thead class="bg-purple-800 text-purple-100">
+                    <tr class="">
+                        <!-- TODO: add jinja2 syntax to add header in headers. -->
+                        <th class="border border-purple-700 p-2">Status</th>
+                        <th class="border border-purple-700 p-2">Seller</th>
+                        <th class="border border-purple-700 p-2">Debt</th>
+                        <th class="border border-purple-700 p-2">#P</th>
+                        <th class="border border-purple-700 p-2">Price</th>
+                        <th class="border border-purple-700 p-2">Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <!-- TODO: add jinja2 syntax to add data in dictionary
+                            sorted by date. -->
+                        <td class="border border-purple-700 bg-white p-2">1</td>
+                        <td class="border border-purple-700 bg-white p-2">2</td>
+                        <td class="border border-purple-700 bg-white p-2">3</td>
+                        <td class="border border-purple-700 bg-white p-2">4</td>
+                        <td class="border border-purple-700 bg-white p-2">5</td>
+                        <td class="border border-purple-700 bg-white p-2">6</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
