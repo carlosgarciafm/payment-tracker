@@ -2,6 +2,7 @@ from flask import Flask, render_template, session
 from flask_session import Session
 from tempfile import mkdtemp
 from dbschema import User, Purchase, Payment, db
+from utils import login_required
 
 # Application configuration.
 app = Flask(__name__)
@@ -21,5 +22,6 @@ Session(app)
 
 
 @app.route("/")
+@login_required
 def index():
     return render_template("index.html")
