@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block navigation %}
+    {% include "navigation.html" %}
+{% endblock %}
+
+{% block title %}
+    {{ code }}
+{% endblock %}
+
+{% block main %}
+    <div class="card container bg-purple-300 w-10/12 md:w-1/2 mx-auto mt-12">
+        <img class="mx-auto rounded rounded-md"
+             src="https://api.memegen.link/{{ meme }}/{{ top | urlencode }}/{{ bottom | urlencode }}.png"
+             alt="Error {{ code }}">
+    </div>
+{% endblock %}
