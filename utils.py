@@ -1,4 +1,4 @@
-from flask import redirect, session
+from flask import redirect, render_template, session
 from functools import wraps
 
 
@@ -14,3 +14,17 @@ def login_required(f):
             return redirect("/login")
         return f(*args, **kwargs)
     return decorated_function
+
+
+# Extended version of CS50's apology function.
+def apology(meme, top, bottom, code=400):
+    def escape(s):
+        """
+        Escape special characters.
+        https://github.com/jacebrowning/memegen#special-characters
+        """
+        for old, new in [("-", "--"), (" ", "-"), ("_", "__"), ("?", "~q"),
+                ("%", "~p"), ("#", "~h"), ("/", "~s"), ("\"", "''")]:
+            s = s.replace(old, new)
+        return s
+    return render_template("apology.html", meme=meme, top=escape(top), bottom=escape(bottom), code=code), code
