@@ -12,6 +12,7 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(20), unique=True, nullable=False)
     pw_hash = db.Column(db.String, nullable=False)
+    debt = db.Column(db.Float, nullable=False, default=0.0)
     avatar_url = db.Column(db.String, nullable=True)
 
     # Declare one-to-many relationship with purchases table.
