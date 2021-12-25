@@ -9,7 +9,7 @@
 {% endblock %}
 
 {% block main %}
-    <div class="card container mx-auto bg-purple-200 w-4/5 md:w-2/3 mt-12">
+    <div class="card container mx-auto bg-purple-200 w-4/5 md:w-5/6 mt-12">
         <div class="space-y-4">
             <div class="flex justify-between">
                 <h2 class="text-lg font-bold">Add New Purchase</h2>
@@ -22,15 +22,35 @@
                 </span>
             </div>
             <form action="/purchase" method="post" class="">
-                <div class="md:flex md:space-x-4 space-y-2 md:space-y-0">
+                <div class="md:flex md:flex-none md:flex-wrap gap-y-2 space-y-2
+                            gap-x-2 md:space-y-0 md:justify-between">
                     <input type="text" name="seller" autocomplete="off"
                                                      required
                                                      placeholder="Seller"
-                                                     class="input-text">
-                    <input type="number" step="0.01" min="0.01" required
-                                                      placeholder="Amount"
+                                                     class="input-text md:flex-1
+                                                     md:basis-3/12">
+                    <input type="text" name="item" autocomplete="off"
+                                                   required
+                                                   placeholder="Item"
+                                                   class="input-text md:flex-1
+                                                   md:basis-4/12">
+                    <input type="number" name="price" step="0.01" min="0.01"
+                                                      required
+                                                      placeholder="Price"
                                                       autocomplete="off"
-                                                      class="input-text">
+                                                      class="input-text
+                                                      md:flex-1 md:basis-2/12">
+                    <select name="status" required class="input-text bg-white
+                                                   md:flex-1 md:basis-2/12">
+                        {% for s in status %}
+                        <option value="{{ s }}">{{ s }}</option>
+                        {% endfor %}
+                    </select>
+                    <textarea name="description" autocomplete="off"
+                                                 rows="2" cols="80"
+                                                 placeholder="Description"
+                                                 class="input-text
+                                                 md:space-y-4"></textarea>
                 </div>
                 <div class="flex justify-center">
                     <button type="submit" class="submit-btn mt-4">
