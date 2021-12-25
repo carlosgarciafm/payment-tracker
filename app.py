@@ -1,7 +1,7 @@
 from flask import Flask, render_template, session, request, redirect
 from flask_session import Session
 from tempfile import mkdtemp
-from werkzeug.security import check_password_hash
+from werkzeug.security import check_password_hash, generate_password_hash
 from dbschema import User, Purchase, Payment, db
 from utils import login_required, apology
 
@@ -73,3 +73,57 @@ def logout():
     # Clear any existing user session.
     session.clear()
     return redirect("/")
+
+
+@app.route("/register", methods=["GET", "POST"])
+def register():
+    """Allow a new user to register."""
+    if request.method == "POST":
+        # Missing username, password and confirmation.
+        if (not request.form.get("username") and
+           not request.form.get("password") and
+           not request.form.get("confirmation")):
+            return apology("both", "username, password and confirmation",
+                           "why not all?")
+
+        # Missing either username, password or confirmation.
+        if (not request.form.get("username") or
+           not request.form.get("password") or
+           not request.form.get("confirmation")):
+            return apology("cheems", "username, password or confirmation",
+                           "something's missing")
+
+        # Query user from database.
+        user = User.query.filter_by(
+                username=request.form.get("username")).first()
+
+        # User is already in database.
+        if user:
+            return apology("aag",
+                           "username taken",
+                           " ",
+                           code=403)
+
+        # Passwords do not match.
+        if request.form.get("password") != request.form.get("confirmation"):
+            return apology("stop-it",
+                           "stop it,",
+                           "get matching password and confirmation",
+                           code=403)
+
+        # Create new user.
+        user = User(username=request.form.get("username"),
+                    pw_hash=generate_password_hash(
+                        request.form.get("password")))
+
+        # Add user to database.
+        db.session.add(user)
+        db.session.commit()
+
+        # Attach user to the current session.
+        session["user_id"] = user.id
+        session["username"] = user.username
+
+        return redirect("/")
+    else:
+        return render_template("register.html")
