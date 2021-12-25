@@ -65,3 +65,11 @@ def login():
         return redirect("/")
     else:
         return render_template("login.html")
+
+
+@app.route("/logout")
+def logout():
+    """Allow the user to logout."""
+    # Clear any existing user session.
+    session.clear()
+    return redirect("/")
