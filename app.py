@@ -127,3 +127,43 @@ def register():
         return redirect("/")
     else:
         return render_template("register.html")
+
+
+@app.route("/purchase", methods=["GET", "POST"])
+@login_required
+def purchase():
+    status = ["Cleared", "Pending"]
+    if request.method == "POST":
+        required_fields = ["seller", "item", "status", "price"]
+        for field in required_fields:
+            # Missing data from form.
+            if not request.form.get(field):
+                return apology("fine", " ", f"{field} is missing")
+
+        # Create new purchase.
+        purchase = Purchase(seller=request.form.get("seller"),
+                            item=request.form.get("item"),
+                            description=request.form.get("description"),
+                            status=request.form.get("status"),
+                            price=request.form.get("price", type=float),
+                            user_id=session["user_id"])
+
+        # Invalid status.
+        if purchase.status not in status:
+            return apology("cheems", purchase.status, "invalid status", 400)
+
+        # Update debt on "Pending" purchases.
+        if purchase.status == "Pending":
+            purchase.debt = purchase.price
+
+            # Update user's debt.
+            user = User.query.filter_by(id=purchase.user_id).first()
+            user.debt += purchase.debt
+
+        # Add purchase to database.
+        db.session.add(purchase)
+        db.session.commit()
+
+        return redirect("/purchases")
+    else:
+        return render_template("purchase.html", status=status)
