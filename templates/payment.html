@@ -22,16 +22,18 @@
             </div>
             <form action="/payment" method="post" class="">
                 <div class="md:flex md:space-x-4 space-y-2 md:space-y-0">
-                    <select name="purchase_id" class="input-text bg-white text-gray-400">
-                        <!-- TODO: add jinja2 syntax to add options for every
-                            pending purchase. -->
-                        <option value="id1" class="">[id] [seller] [cash]</option>
-                        <option value="id2" class="">[id2] [seller2] [cash]</option>
+                    <select name="purchase_id" class="input-text bg-white">
+                        {% for purchase in pending %}
+                        <option value="{{ purchase.id }}" class="">
+                            {{ purchase.item }} [{{ purchase.debt | formatter }}]
+                        </option>
+                        {% endfor %}
                     </select>
-                    <input type="number" step="0.01" min="0.01" required
-                                                      placeholder="Amount"
-                                                      autocomplete="off"
-                                                      class="input-text">
+                    <input type="number" name="amount" step="0.01" min="0.01"
+                                                       required
+                                                       placeholder="Amount"
+                                                       autocomplete="off"
+                                                       class="input-text">
                 </div>
                 <div class="flex justify-center">
                     <button type="submit" class="submit-btn mt-4">
