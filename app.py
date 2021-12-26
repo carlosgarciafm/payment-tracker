@@ -170,3 +170,25 @@ def purchase():
         return redirect("/purchases")
     else:
         return render_template("purchase.html", status=status)
+
+
+@app.route("/purchases", methods=["GET"])
+@login_required
+def purchases():
+    """Allow the user to view cleared and pending purchases."""
+    headers = ["seller", "item", "price", "debt", "date"]
+
+    # Get all pending purchases for the current user.
+    pending = Purchase.query.filter_by(
+            user_id=session["user_id"]).filter_by(status="Pending").all()
+
+    # Get all cleared purchases for the current user.
+    cleared = Purchase.query.filter_by(
+            user_id=session["user_id"]).filter_by(status="Cleared").all()
+
+    # Store purchases information in dictionary form: {"status": [purchases]}.
+    purchases_data = {"Pending": pending, "Cleared": cleared}
+
+    return render_template("purchases.html",
+                           headers=headers,
+                           purchases_data=purchases_data)
