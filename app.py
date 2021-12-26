@@ -3,7 +3,7 @@ from flask_session import Session
 from tempfile import mkdtemp
 from werkzeug.security import check_password_hash, generate_password_hash
 from dbschema import User, Purchase, Payment, db
-from utils import login_required, apology
+from utils import login_required, apology, formatter
 
 # Application configuration.
 app = Flask(__name__)
@@ -14,6 +14,9 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db.app = app
 db.init_app(app)
 db.create_all()
+
+# Configure custom jinja filters.
+app.jinja_env.filters["formatter"] = formatter
 
 # Configure session to use filesystem (instead of signed cookies)
 app.config["SESSION_FILE_DIR"] = mkdtemp()
