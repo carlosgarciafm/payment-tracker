@@ -203,3 +203,62 @@ def purchases():
     return render_template("purchases.html",
                            headers=headers,
                            purchases_data=purchases_data)
+
+
+@app.route("/payment", methods=["GET", "POST"])
+@login_required
+def payment():
+    """Allow the user to register a new payment on a pending purchase."""
+    if request.method == "POST":
+        required_fields = ["purchase_id", "amount"]
+        for field in required_fields:
+            # Missing data from form.
+            if not request.form.get(field):
+                return apology("fine", " ", f"{field} is missing")
+
+        # Create new payment.
+        payment = Payment(amount=request.form.get("amount", type=float),
+                          purchase_id=request.form.get("purchase_id"))
+
+        # Payment on cleared purchase.
+        if not Purchase.query.filter_by(status="Pending").filter_by(
+                id=payment.purchase_id).first():
+            return apology("woman-cat", " ", "invalid purchase", 400)
+
+        # Verify the purchase exists in the database.
+        purchase = Purchase.query.filter_by(id=payment.purchase_id).first()
+        if not purchase:
+            return apology("patrick",
+                           "why don't we take this payment",
+                           "and apply it to an existing purchase", 400)
+        # Payment amount exceeds debt.
+        if payment.amount > purchase.debt:
+            payment.amount = purchase.debt
+        # Update purchase's debt.
+        purchase.debt -= payment.amount
+        # Purchase has been paid in full.
+        if purchase.debt == 0:
+            purchase.status = "Cleared"
+
+        # Update user's debt.
+        user = User.query.filter_by(id=Purchase.query.filter_by(
+            id=payment.purchase_id).first().user_id).first()
+        if not user:
+            return apology("disasatergirl",
+                           " ",
+                           "missing user", 400)
+        user.debt -= payment.amount
+
+        # Add payment to database.
+        db.session.add(payment)
+        db.session.add(purchase)
+        db.session.add(user)
+        db.session.commit()
+
+        return redirect("/payments")
+    else:
+        # Get all pending purchases for the current user.
+        pending = Purchase.query.filter_by(
+                user_id=session["user_id"]).filter_by(status="Pending").all()
+
+        return render_template("payment.html", pending=pending)
