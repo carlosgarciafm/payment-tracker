@@ -25,10 +25,14 @@ def apology(meme, top, bottom, code=400):
         https://github.com/jacebrowning/memegen#special-characters
         """
         for old, new in [("-", "--"), (" ", "-"), ("_", "__"), ("?", "~q"),
-                ("%", "~p"), ("#", "~h"), ("/", "~s"), ("\"", "''")]:
+                         ("%", "~p"), ("#", "~h"), ("/", "~s"), ("\"", "''")]:
             s = s.replace(old, new)
         return s
-    return render_template("apology.html", meme=meme, top=escape(top), bottom=escape(bottom), code=code), code
+    return render_template("apology.html",
+                           meme=meme,
+                           top=escape(top),
+                           bottom=escape(bottom),
+                           code=code), code
 
 
 # Format input based in it's data type. Meant to be as custom jinja filter.

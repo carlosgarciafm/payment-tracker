@@ -144,6 +144,7 @@ def register():
 @app.route("/purchase", methods=["GET", "POST"])
 @login_required
 def purchase():
+    """Allow the user to register a new purchase."""
     status = ["Cleared", "Pending"]
     if request.method == "POST":
         required_fields = ["seller", "item", "status", "price"]

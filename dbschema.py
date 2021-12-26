@@ -16,7 +16,8 @@ class User(db.Model):
     avatar_url = db.Column(db.String, nullable=True)
 
     # Declare one-to-many relationship with purchases table.
-    purchases = db.relationship("Purchase", backref=db.backref("user", lazy=True))
+    purchases = db.relationship("Purchase",
+                                backref=db.backref("user", lazy=True))
 
     def __repr__(self):
         return "<User %r>" % self.id
@@ -37,7 +38,8 @@ class Purchase(db.Model):
     # Add reference to user.id within purchases table.
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     # Declare one-to-many relationship with payments table.
-    payments = db.relationship("Payment", backref=db.backref("purchase", lazy=True))
+    payments = db.relationship("Payment",
+                               backref=db.backref("purchase", lazy=True))
 
     def __repr__(self):
         return "<Purchase %r>" % self.id
@@ -51,7 +53,8 @@ class Payment(db.Model):
     date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
 
     # Add reference to puchase.id within payments table.
-    purchase_id = db.Column(db.Integer, db.ForeignKey("purchases.id"), nullable=False)
+    purchase_id = db.Column(db.Integer,
+                            db.ForeignKey("purchases.id"), nullable=False)
 
     def __repr__(self):
         return "<Payment %r>" % self.id
