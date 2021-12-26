@@ -264,3 +264,15 @@ def payment():
                                 db.desc(Purchase.date)).all()
 
         return render_template("payment.html", pending=pending)
+
+
+@app.route("/payments", methods=["GET"])
+@login_required
+def payments():
+    """Allow the user to view all payments."""
+    headers = ["amount", "date"]
+
+    # Get all payments for the current user.
+    payments = Payment.query.order_by(db.desc(Payment.date)).all()
+
+    return render_template("payments.html", headers=headers, payments=payments)
