@@ -180,11 +180,13 @@ def purchases():
 
     # Get all pending purchases for the current user.
     pending = Purchase.query.filter_by(
-            user_id=session["user_id"]).filter_by(status="Pending").all()
+            user_id=session["user_id"]).filter_by(status="Pending").order_by(
+                    db.desc(Purchase.date)).all()
 
     # Get all cleared purchases for the current user.
     cleared = Purchase.query.filter_by(
-            user_id=session["user_id"]).filter_by(status="Cleared").all()
+            user_id=session["user_id"]).filter_by(status="Cleared").order_by(
+                    db.desc(Purchase.date)).all()
 
     # Store purchases information in dictionary form: {"status": [purchases]}.
     purchases_data = {"Pending": pending, "Cleared": cleared}
