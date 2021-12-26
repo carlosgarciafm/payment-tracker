@@ -259,6 +259,8 @@ def payment():
     else:
         # Get all pending purchases for the current user.
         pending = Purchase.query.filter_by(
-                user_id=session["user_id"]).filter_by(status="Pending").all()
+                user_id=session["user_id"]).filter_by(
+                        status="Pending").order_by(
+                                db.desc(Purchase.date)).all()
 
         return render_template("payment.html", pending=pending)
