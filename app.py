@@ -25,6 +25,15 @@ app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
 
+# Ensure responses aren't cached
+@app.after_request
+def after_request(response):
+    response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+    response.headers["Expires"] = 0
+    response.headers["Pragma"] = "no-cache"
+    return response
+
+
 @app.route("/")
 @login_required
 def index():
