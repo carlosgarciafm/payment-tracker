@@ -33,7 +33,7 @@ class Purchase(db.Model):
     status = db.Column(db.String(10), nullable=False)
     price = db.Column(db.Float, nullable=False)
     debt = db.Column(db.Float, nullable=False, default=0.0)
-    date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    date = db.Column(db.DateTime, nullable=False, default=datetime.now)
 
     # Add reference to user.id within purchases table.
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
@@ -50,7 +50,7 @@ class Payment(db.Model):
     __tablename__ = "payments"
     id = db.Column(db.Integer, primary_key=True)
     amount = db.Column(db.Float, nullable=False)
-    date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    date = db.Column(db.DateTime, nullable=False, default=datetime.now)
 
     # Add reference to puchase.id within payments table.
     purchase_id = db.Column(db.Integer,
