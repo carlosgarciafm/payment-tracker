@@ -197,7 +197,7 @@ def purchase():
 @login_required
 def purchases():
     """Allow the user to view cleared and pending purchases."""
-    headers = ["seller", "item", "price", "debt", "date"]
+    headers = ["item", "seller", "description", "price", "debt", "date"]
 
     # Get all pending purchases for the current user.
     pending = Purchase.query.filter_by(

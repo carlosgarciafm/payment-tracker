@@ -22,7 +22,7 @@
                     <thead class="">
                         <tr class="">
                             {% for header in headers %}
-                            <th class="">
+                            <th class="{% if header == "description" %}hidden md:table-cell{% endif %}">
                                 {{ header | title }}
                             </th>
                             {% endfor %}
@@ -32,7 +32,7 @@
                         {% for purchase in purchases_data[status] %}
                         <tr>
                             {% for header in headers %}
-                            <td class="">
+                            <td class="{% if header == "description" %}hidden md:table-cell{% endif %}">
                                 {{ purchase[header] | formatter }}
                             </td>
                             {% endfor %}
