@@ -19,8 +19,8 @@
 <!-- sidebar -->
 <nav id="sidebar" class="w-48 bg-purple-800 text-purple-100 absolute inset-y-0 left-0
                                        transform -translate-x-full transition duration-200
-                                       ease-in-out md:relative md:translate-x-0">
-    <div class="space-y-6 text-lg py-24">
+                                       ease-in-out md:relative md:translate-x-0 h-screen">
+    <div class="flex flex-col text-lg gap-y-8 justify-center h-full">
         {% if session.user_id %}
         <ul class="">
             {% if session.avatar_url %}

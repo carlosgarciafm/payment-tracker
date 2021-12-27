@@ -570,6 +570,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: 1.5rem;
 }
 
+.h-full {
+  height: 100%;
+}
+
 .h-10 {
   height: 2.5rem;
 }
@@ -673,6 +677,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   justify-items: center;
 }
 
+.gap-y-8 {
+  row-gap: 2rem;
+}
+
 .gap-y-2 {
   row-gap: 0.5rem;
 }
@@ -686,12 +694,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-space-y-reverse: 0;
   margin-top: calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(0.5rem * var(--tw-space-y-reverse));
-}
-
-.space-y-6 > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-y-reverse: 0;
-  margin-top: calc(1.5rem * calc(1 - var(--tw-space-y-reverse)));
-  margin-bottom: calc(1.5rem * var(--tw-space-y-reverse));
 }
 
 .space-y-4 > :not([hidden]) ~ :not([hidden]) {
@@ -734,11 +736,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .p-2 {
   padding: 0.5rem;
-}
-
-.py-24 {
-  padding-top: 6rem;
-  padding-bottom: 6rem;
 }
 
 .py-2 {
