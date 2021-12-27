@@ -899,6 +899,7 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
   padding: 0.5rem;
+  text-align: center;
 }
 
 .hover\:bg-purple-600:hover {
