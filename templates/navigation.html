@@ -23,7 +23,7 @@
     <div class="space-y-6 text-lg py-24">
         {% if session.user_id %}
         <ul>
-            <a href="#" class="">
+            <a href="/" class="">
                 <li class="py-2 font-bold text-xl hover:bg-purple-600
                                           transition duration-200 px-4">
                     {{ session.username }}
@@ -31,13 +31,13 @@
             </a>
         </ul>
         <ul class="font-bold space-y-4">
-            <a href="#">
+            <a href="/purchases">
                 <li class="py-1 my-2 hover:bg-purple-600 transition
                                           duration-200 px-4">
                     Purchases
                 </li>
             </a>
-            <a href="#">
+            <a href="/payments">
                 <li class="py-1 my-2 hover:bg-purple-600 transition
                                           duration-200 px-4">
                     Payments
@@ -45,7 +45,7 @@
             </a>
         </ul>
         <ul class="">
-            <a href="#">
+            <a href="/logout">
                 <li class="py-1 my-2 hover:bg-purple-600 transition
                                           duration-200 px-4">
                     Log Out
