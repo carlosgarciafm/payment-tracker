@@ -37,7 +37,18 @@ def after_request(response):
 @app.route("/")
 @login_required
 def index():
-    return render_template("index.html")
+    """Show a summary for the current user."""
+    headers = ["purchases", "payments", "debt", "total"]
+
+    # Query user from database.
+    user = User.query.filter_by(id=session["user_id"]).first()
+    profile = {"avatar_url": user.avatar_url,
+               "debt": user.debt,
+               "total": sum([purchase.price for purchase in user.purchases]),
+               "purchases": len(user.purchases),
+               "payments": len(user.purchases)}
+
+    return render_template("index.html", headers=headers, profile=profile)
 
 
 @app.route("/login", methods=["GET", "POST"])
