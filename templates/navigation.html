@@ -1,25 +1,27 @@
 <!-- mobile-friendly menu -->
-<div class="bg-purple-800 text-purple-100 flex justify-between md:hidden">
-    <button id="sidebar-toggle" class="p-2 focus:outline-none
-                                        focus:bg-purple-600 z-10">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7" />
-        </svg>
-    </button>
-    {% if session.username %}
-    <a href="/" class="block p-2 font-bold text-2md">
-        {{ session.username }}
-    </a>
-    {% else %}
-    <a href="/login" class="block p-2 font-bold text-2md">
-        Login
-    </a>
-    {% endif %}
+<div class="sticky inset-y-0 w-full z-10 md:hidden h-min">
+    <div class="bg-purple-800 text-purple-100 flex justify-between">
+        <button id="sidebar-toggle" class="p-2 focus:outline-none
+                                            focus:bg-purple-600">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7" />
+            </svg>
+        </button>
+        {% if session.username %}
+        <a href="/" class="block p-2 font-bold text-2md">
+            {{ session.username }}
+        </a>
+        {% else %}
+        <a href="/login" class="block p-2 font-bold text-2md">
+            Login
+        </a>
+        {% endif %}
+    </div>
 </div>
 <!-- sidebar -->
 <nav id="sidebar" class="w-48 bg-purple-800 text-purple-100 absolute inset-y-0 left-0
                                        transform -translate-x-full transition duration-200
-                                       ease-in-out md:relative md:translate-x-0 h-screen">
+                                       ease-in-out md:relative md:translate-x-0 h-min-screen">
     <div class="flex flex-col text-lg gap-y-8 justify-center h-full">
         {% if session.user_id %}
         <ul class="">
