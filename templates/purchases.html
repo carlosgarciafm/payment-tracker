@@ -18,11 +18,11 @@
             {% for status in purchases_data %}
             <div class="my-8">
                 <h4 class="font-bold text-md">{{ status }} Purchases (↓Date)</h4>
-                <table class="w-full mt-4">
-                    <thead class="bg-purple-800 text-purple-100">
+                <table class="table mt-4">
+                    <thead class="">
                         <tr class="">
                             {% for header in headers %}
-                            <th class="border border-purple-700 p-2">
+                            <th class="">
                                 {{ header | title }}
                             </th>
                             {% endfor %}
@@ -32,7 +32,7 @@
                         {% for purchase in purchases_data[status] %}
                         <tr>
                             {% for header in headers %}
-                            <td class="border border-purple-700 bg-white p-2">
+                            <td class="">
                                 {{ purchase[header] | formatter }}
                             </td>
                             {% endfor %}

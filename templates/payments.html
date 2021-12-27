@@ -15,20 +15,20 @@
                 <h2 class="font-bold text-lg">Registry Of Payments (↓Date)</h2>
                 <button class="submit-btn"><a href="/payment">New Payment</a></button>
             </div>
-            <table class="w-full mt-4">
-                <thead class="bg-purple-800 text-purple-100">
+            <table class="table mt-4">
+                <thead class="">
                     <tr class="">
-                        <th class="border border-purple-700 p-2">
+                        <th class="">
                             Item
                         </th>
-                        <th class="border border-purple-700 p-2">
+                        <th class="">
                             Seller
                         </th>
-                        <th class="border border-purple-700 p-2">
+                        <th class="">
                             Price
                         </th>
                         {% for header in headers %}
-                        <th class="border border-purple-700 p-2">
+                        <th class="">
                             {{ header | title }}
                         </th>
                         {% endfor %}
@@ -37,17 +37,17 @@
                 <tbody>
                     {% for payment in payments %}
                     <tr>
-                        <td class="border border-purple-700 bg-white p-2">
+                        <td class="">
                             {{ payment.purchase.item | formatter }}
                         </td>
-                        <td class="border border-purple-700 bg-white p-2">
+                        <td class="">
                             {{ payment.purchase.seller | formatter }}
                         </td>
-                        <td class="border border-purple-700 bg-white p-2">
+                        <td class="">
                             {{ payment.purchase.price | formatter }}
                         </td>
                         {% for header in headers %}
-                        <td class="border border-purple-700 bg-white p-2">
+                        <td class="">
                             {{ payment[header] | formatter }}
                         </td>
                         {% endfor %}
