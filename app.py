@@ -38,16 +38,20 @@ def after_request(response):
 @login_required
 def index():
     """Show a summary for the current user."""
-    headers = ["purchases", "payments", "debt", "total"]
+    headers = ["# purchases",
+               "# payments",
+               "current debt",
+               "total amount spent"]
 
     # Query user from database.
     user = User.query.filter_by(id=session["user_id"]).first()
     profile = {"avatar_url": user.avatar_url,
-               "debt": user.debt,
-               "total": sum([purchase.price for purchase in user.purchases]),
-               "purchases": len(user.purchases),
-               "payments": len([payments for purchase in user.purchases
-                                for payments in purchase.payments])}
+               "current debt": user.debt,
+               "total amount spent": float(
+                   sum([purchase.price for purchase in user.purchases])),
+               "# purchases": len(user.purchases),
+               "# payments": len([payments for purchase in user.purchases
+                                 for payments in purchase.payments])}
 
     return render_template("index.html", headers=headers, profile=profile)
 

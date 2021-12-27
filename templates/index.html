@@ -9,7 +9,7 @@
 {% endblock %}
 
 {% block main %}
-    <div class="card flex flex-col mx-auto mt-12 w-min bg-purple-200 justify-center items-center">
+    <div class="card flex flex-col mx-auto mt-12 w-10/12 md:w-1/2 bg-purple-200 justify-center items-center">
         <div class="">
             {% if profile.avatar_url %}
             <img src="{{ profile.avatar_url }}" alt="user avatar" class="rounded
@@ -38,7 +38,7 @@
                 <tbody>
                     <tr>
                         {% for header in headers %}
-                        <td {% if header == "total" %}class="font-bold"{% endif %}>
+                        <td {% if header == "total amount spent" %}class="font-bold"{% endif %}>
                             {{ profile[header] | formatter }}
                         </td>
                         {% endfor %}

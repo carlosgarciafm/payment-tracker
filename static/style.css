@@ -635,6 +635,18 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 91.666667%;
 }
 
+.w-1\/2 {
+  width: 50%;
+}
+
+.w-3\/4 {
+  width: 75%;
+}
+
+.w-9\/12 {
+  width: 75%;
+}
+
 .flex-1 {
   flex: 1 1 0%;
 }
