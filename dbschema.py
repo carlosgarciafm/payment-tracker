@@ -56,5 +56,9 @@ class Payment(db.Model):
     purchase_id = db.Column(db.Integer,
                             db.ForeignKey("purchases.id"), nullable=False)
 
+    # Add reference to user.id within payments table.
+    user_id = db.Column(db.Integer,
+                        db.ForeignKey("users.id"), nullable=False)
+
     def __repr__(self):
         return "<Payment %r>" % self.id
