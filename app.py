@@ -3,7 +3,7 @@ from flask_session import Session
 from tempfile import mkdtemp
 from werkzeug.security import check_password_hash, generate_password_hash
 from dbschema import User, Purchase, Payment, db
-from utils import login_required, apology, formatter
+from utils import login_required, apology, formatter, meets_security_check
 
 # Application configuration.
 app = Flask(__name__)
@@ -139,6 +139,13 @@ def register():
                            "stop it,",
                            "get matching password and confirmation",
                            code=403)
+
+        # Add password security check.
+        if not meets_security_check(request.form.get("password")):
+            return apology("bad",
+                           "your password is bad",
+                           "it must have numbers and be at least 8 chars long",
+                           code=400)
 
         # Create new user.
         user = User(username=request.form.get("username"),

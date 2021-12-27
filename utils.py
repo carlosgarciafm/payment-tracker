@@ -1,6 +1,7 @@
 from flask import redirect, render_template, session
 from functools import wraps
 from datetime import datetime
+import re
 
 
 # CS50's function to require a login.
@@ -43,3 +44,11 @@ def formatter(data):
         return data.replace(microsecond=0)
     else:
         return data
+
+
+# Check if the password meets the security requirements.
+def meets_security_check(password):
+    """Check if password meets the security requirements."""
+    if len(password) >= 8 and re.compile("\d").search(password):
+        return True
+    return False
