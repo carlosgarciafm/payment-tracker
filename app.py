@@ -219,7 +219,8 @@ def payment():
 
         # Create new payment.
         payment = Payment(amount=request.form.get("amount", type=float),
-                          purchase_id=request.form.get("purchase_id"))
+                          purchase_id=request.form.get("purchase_id"),
+                          user_id=session["user_id"])
 
         # Payment on cleared purchase.
         if not Purchase.query.filter_by(status="Pending").filter_by(
@@ -274,6 +275,7 @@ def payments():
     headers = ["amount", "date"]
 
     # Get all payments for the current user.
-    payments = Payment.query.order_by(db.desc(Payment.date)).all()
+    payments = Payment.query.filter_by(user_id=session["user_id"]).order_by(
+            db.desc(Payment.date)).all()
 
     return render_template("payments.html", headers=headers, payments=payments)
