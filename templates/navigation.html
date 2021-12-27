@@ -66,11 +66,17 @@
             </a>
         </ul>
         {% else %}
-        <ul>
-            <li class="py-w font-bold text-xl hover:bg-purple-600 transition
-                duration-200 px-4">
-                <a href="/login">Login</a>
-            </li>
+        <ul class="font-bold space-y-4">
+            <a href="/login">
+                <li class="py-1 text-xl hover:bg-purple-600 transition duration-200 px-4">
+                    Login
+                </li>
+            </a>
+            <a href="/register">
+                <li class="py-1 text-xl hover:bg-purple-600 transition duration-200 px-4">
+                    Register
+                </li>
+            </a>
         </ul>
         {% endif %}
     </div>
