@@ -84,6 +84,7 @@ def login():
         # Attach user to the current session.
         session["user_id"] = user.id
         session["username"] = user.username
+        session["avatar_url"] = user.avatar_url
 
         return redirect("/")
     else:
@@ -146,6 +147,7 @@ def register():
         # Attach user to the current session.
         session["user_id"] = user.id
         session["username"] = user.username
+        session["avatar_url"] = user.avatar_url
 
         return redirect("/")
     else:
