@@ -46,7 +46,8 @@ def index():
                "debt": user.debt,
                "total": sum([purchase.price for purchase in user.purchases]),
                "purchases": len(user.purchases),
-               "payments": len(user.purchases)}
+               "payments": len([payments for purchase in user.purchases
+                                for payments in purchase.payments])}
 
     return render_template("index.html", headers=headers, profile=profile)
 
